@@ -603,36 +603,7 @@
         <h1 class="page-title">Culture <em>Articles</em></h1>
     </div>
     <div class="articles-grid" id="articlesGrid">
-        <div class="article-card">
-            <div class="article-num">01</div>
-            <h2 class="article-title">Fashion and Identity: Dressing as a Political Act</h2>
-            <p class="article-excerpt">From suffragette white to protest streetwear — clothing has always carried
-                meaning beyond fabric. An exploration of how what is worn has shaped movements, challenged power, and
-                defined belonging.</p>
-            <a href="#" class="article-read">Read Article →</a>
-        </div>
-        <div class="article-card">
-            <div class="article-num">02</div>
-            <h2 class="article-title">When Art Meets the Runway</h2>
-            <p class="article-excerpt">The collaborations between fashion houses and contemporary artists aren't just
-                aesthetic exercises — they are calculated expansions of cultural capital, audience, and legacy.</p>
-            <a href="#" class="article-read">Read Article →</a>
-        </div>
-        <div class="article-card">
-            <div class="article-num">03</div>
-            <h2 class="article-title">The Museum Effect: How Fashion Became Fine Art</h2>
-            <p class="article-excerpt">From the Met Gala to dedicated costume exhibitions at the V&A — fashion's entry
-                into institutional spaces signals a shift in how the industry sees itself and demands to be seen.</p>
-            <a href="#" class="article-read">Read Article →</a>
-        </div>
-        <div class="article-card">
-            <div class="article-num">04</div>
-            <h2 class="article-title">Subculture to Mainstream: The Journey of Streetwear</h2>
-            <p class="article-excerpt">What began in skate parks and hip-hop communities is now the language of luxury.
-                Tracing the cultural journey of streetwear — and what gets lost when a subculture becomes a category.
-            </p>
-            <a href="#" class="article-read">Read Article →</a>
-        </div>
+        <p class="coming-soon">No articles yet. Add your own articles below in this section.</p>
     </div>
     <p class="coming-soon">More articles coming soon.</p>
     <footer>
@@ -650,22 +621,12 @@
         (function loop() { rx += (mx - rx) * .1; ry += (my - ry) * .1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); })();
         const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: .1 });
         document.querySelectorAll('.article-card').forEach(el => obs.observe(el));
-        // Search - Extract articles from current page + static list
+        // Search - Extract articles from current page only (start fresh)
         const buildAllArticles = () => {
-            let allArticles = [
-                { title: "The New Silhouette: What Shapes Are Saying This Season", cat: "Fashion", page: "fashion-articles.html" },
-                { title: "Heritage vs Hype: How Luxury Houses Stay Relevant", cat: "Fashion", page: "fashion-articles.html" },
-                { title: "The Business of Being Chanel", cat: "Business", page: "business-articles.html" },
-                { title: "How LVMH Built the World's Largest Luxury Empire", cat: "Business", page: "business-articles.html" },
-                { title: "Quiet Luxury: The Trend That Refused to Leave", cat: "Trends", page: "trends-articles.html" },
-                { title: "The Return of Maximalism", cat: "Trends", page: "trends-articles.html" },
-                { title: "Fashion and Identity: Dressing as a Political Act", cat: "Culture", page: "culture-articles.html" },
-                { title: "When Art Meets the Runway", cat: "Culture", page: "culture-articles.html" },
-            ];
-            // Scan current page for article cards and add them
+            const allArticles = [];
             const pageTitle = document.querySelector('.page-title')?.textContent || '';
-            const category = pageTitle.split(' ')[0]; // Extract category from title
-            const currentPage = window.location.pathname.split('/').pop() || 'culture-articles.html';
+            const category = pageTitle.split(' ')[0];
+            const currentPage = window.location.pathname.split('/').pop() || '';
             document.querySelectorAll('.article-card').forEach((card) => {
                 const title = card.querySelector('.article-title')?.textContent?.trim();
                 if (title && !allArticles.some(a => a.title === title)) {
