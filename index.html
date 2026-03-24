@@ -742,17 +742,20 @@
         const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } }); }, { threshold: .08 });
         document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
-        // Search
-        const articles = [
-            { title: "The New Silhouette: What Shapes Are Saying This Season", cat: "Fashion", page: "fashion-articles.html" },
-            { title: "Heritage vs Hype: How Luxury Houses Stay Relevant", cat: "Fashion", page: "fashion-articles.html" },
-            { title: "The Business of Being Chanel", cat: "Business", page: "business-articles.html" },
-            { title: "How LVMH Built the World's Largest Luxury Empire", cat: "Business", page: "business-articles.html" },
-            { title: "Quiet Luxury: The Trend That Refused to Leave", cat: "Trends", page: "trends-articles.html" },
-            { title: "The Return of Maximalism", cat: "Trends", page: "trends-articles.html" },
-            { title: "Fashion and Identity: Dressing as a Political Act", cat: "Culture", page: "culture-articles.html" },
-            { title: "When Art Meets the Runway", cat: "Culture", page: "culture-articles.html" },
-        ];
+        // Search - Build articles dynamically from all pages
+        const buildAllArticles = () => {
+            return [
+                { title: "The New Silhouette: What Shapes Are Saying This Season", cat: "Fashion", page: "fashion-articles.html" },
+                { title: "Heritage vs Hype: How Luxury Houses Stay Relevant", cat: "Fashion", page: "fashion-articles.html" },
+                { title: "The Business of Being Chanel", cat: "Business", page: "business-articles.html" },
+                { title: "How LVMH Built the World's Largest Luxury Empire", cat: "Business", page: "business-articles.html" },
+                { title: "Quiet Luxury: The Trend That Refused to Leave", cat: "Trends", page: "trends-articles.html" },
+                { title: "The Return of Maximalism", cat: "Trends", page: "trends-articles.html" },
+                { title: "Fashion and Identity: Dressing as a Political Act", cat: "Culture", page: "culture-articles.html" },
+                { title: "When Art Meets the Runway", cat: "Culture", page: "culture-articles.html" },
+            ];
+        };
+        const articles = buildAllArticles();
         const panel = document.getElementById('search-panel');
         const input = document.getElementById('searchInput');
         const results = document.getElementById('searchResults');
